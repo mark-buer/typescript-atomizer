@@ -36,7 +36,6 @@ class TypeScriptWorkspace implements Disposable
         this._atom = atom;
         this._textEditorStates = { };
         this._workspace = atom.workspace;
-        this._workspaceView = atom.workspaceView;
         this._viewRegistry = atom.views;
         this._statusBar = null;
 
@@ -212,11 +211,15 @@ class TypeScriptWorkspace implements Disposable
 
             statusBarView.setModel(this._statusBar);
 
-            if (this._workspaceView.statusBar)
+            var globalStatusBarView: StatusBar = <any> document.querySelector("status-bar")
+            if (globalStatusBarView)
             {
                 statusBarView.classList.add("inline-block");
 
-                this._workspaceView.statusBar.prependLeft(statusBarView);
+                globalStatusBarView.addLeftTile({
+                    item: statusBarView,
+                    priority: -1
+                });
             }
         }
 

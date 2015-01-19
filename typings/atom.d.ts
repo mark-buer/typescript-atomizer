@@ -267,7 +267,7 @@ interface TextEditor
      * @returns {Disposable} A disposable on which 'dispose' can be called to unsubscribe.
      */
     onDidStopChanging(callback: () => void): Disposable;
-    
+
     /**
      * Invoke the given callback when the underlying buffer's path changes.
      *
@@ -316,8 +316,8 @@ interface Disposable
 
 interface StatusBar
 {
-    prependLeft(view: HTMLElement);
-    appendLeft(view: HTMLElement);
+    addLeftTile(options: { item: any; priority: number; });
+    addRightTile(options: { item: any; priority: number; });
 }
 
 /**
